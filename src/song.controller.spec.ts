@@ -15,7 +15,7 @@ describe(`SongController`, () => {
 
   describe('/song', () => {
     it('should return "A DreamShade Song"', () => {
-      expect(songCcontroller.getSong()).toBe({
+      expect(songCcontroller.getSong()).toStrictEqual({
         name: 'Your Voice',
         author: 'Dreamshade',
       })
