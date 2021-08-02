@@ -5,7 +5,7 @@ import { ISong, ISongQueryParams } from './song.interfaces'
 @Injectable()
 export class SongService {
   getSongs(query: ISongQueryParams): ISong[] {
-    if (Object.keys(query).length === 0) {
+    if (query == null || Object.keys(query).length === 0) {
       return songs
     }
 
@@ -17,7 +17,6 @@ export class SongService {
   }
 
   getSong(id: number): ISong {
-    console.log(songs)
     return songs.find((song) => song.id == id)
   }
 }

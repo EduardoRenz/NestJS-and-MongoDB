@@ -14,20 +14,25 @@ describe(`SongController`, () => {
     songController = app.get<SongController>(SongController)
   })
 
-  describe('/song', () => {
+  describe('Songs', () => {
     it('should return all of the songs and must match with the interface', () => {
       const response = songController.getSongs(null)
       expect(response).toEqual(songs)
     })
-  })
 
-  describe('/song/1', () => {
     it('should return "A DreamShade Song"', () => {
       expect(songController.getSong({ id: 1 })).toStrictEqual({
         id: 1,
         title: 'Your Voice',
         artist: 'Dreamshade',
       })
+    })
+
+    it('should return all the Iron Maiden songs searching by query', () => {
+      const response = songController.getSongs({ artist: 'Iron Maiden' })
+      expect(
+        response.every((song) => song.artist === 'Iron Maiden'),
+      ).toBeTruthy()
     })
   })
 })
