@@ -1,7 +1,6 @@
 import { Test, TestingModule } from '@nestjs/testing'
 import { SongController } from './song.controller'
 import { SongService } from './song.service'
-import { ISong } from '../song/song.module'
 import * as songs from '../../../data/songs.json'
 
 describe(`SongController`, () => {
@@ -17,7 +16,7 @@ describe(`SongController`, () => {
 
   describe('/song', () => {
     it('should return all of the songs and must match with the interface', () => {
-      const response = songController.getSongs()
+      const response = songController.getSongs(null)
       expect(response).toEqual(songs)
     })
   })

@@ -1,14 +1,14 @@
-import { Controller, Get, Param } from '@nestjs/common'
+import { Controller, Get, Param, Query } from '@nestjs/common'
 import { SongService } from './song.service'
-import { ISong } from './song.module'
+import { ISong, ISongQueryParams } from './song.interfaces'
 
 @Controller()
 export class SongController {
   constructor(private readonly songService: SongService) {}
 
   @Get('songs')
-  getSongs(): ISong[] {
-    return this.songService.getSongs()
+  getSongs(@Query() query: ISongQueryParams): ISong[] {
+    return this.songService.getSongs(query)
   }
 
   @Get('songs/:id')
