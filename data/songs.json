@@ -1,0 +1,9 @@
+[
+    { "id":1, "title": "Your Voice", "artist": "Dreamshade" },
+    { "id":2, "title": "Fear Of the Dark", "artist": "Iron Maiden" },
+    { "id":3, "title": "The Dark Side Of The Moon", "artist": "Pink Floyd" },
+    { "id":4, "title": "The Wall", "artist": "Pink Floyd" },
+    { "id":5, "title": "Master of Puppets", "artist": "Metalicca" },
+    { "id":6, "title": "Ocean Avenue", "artist": "YellowCard" },
+    { "id":7, "title": "The Number of The Beast", "artist": "Iron Maiden" }
+]
