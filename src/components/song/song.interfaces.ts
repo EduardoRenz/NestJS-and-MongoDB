@@ -1,6 +1,6 @@
 // Structure of a song
 export interface ISong {
-  id: number
+  id?: string
   title: string
   artist: string
 }

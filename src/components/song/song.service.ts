@@ -1,22 +1,35 @@
+import { Model } from 'mongoose'
+import { InjectModel } from '@nestjs/mongoose'
 import { Injectable } from '@nestjs/common'
 import * as songs from '../../../data/songs.json'
 import { ISong, ISongQueryParams } from './song.interfaces'
+import { Song, SongDocument } from './song.schema'
 
 @Injectable()
 export class SongService {
-  getSongs(query: ISongQueryParams): ISong[] {
-    if (query == null || Object.keys(query).length === 0) {
-      return songs
-    }
+  constructor(@InjectModel(Song.name) private songModel: Model<SongDocument>) {}
 
-    return songs.filter((song) => {
-      return Object.keys(query).every((key) => {
-        return song[key].toLowerCase() === query[key].toLowerCase()
-      })
-    })
+  async create(song: ISong): Promise<ISong> {
+    const createSong = new this.songModel(song)
+    await createSong.save()
+    return createSong
   }
 
-  getSong(id: number): ISong {
-    return songs.find((song) => song.id == id)
+  async getSongs(query: ISongQueryParams): Promise<SongDocument[]> {
+    if (query == null || Object.keys(query).length === 0) {
+      return this.songModel.find().exec()
+    }
+
+    // generate a case insensitive regex for mongodb find
+    const regexQuery = query
+    for (const key of Object.keys(query)) {
+      regexQuery[key] = new RegExp(`${regexQuery[key]}`, 'i')
+    }
+
+    return this.songModel.find(regexQuery).exec()
+  }
+
+  getSong(id: number): Promise<SongDocument> {
+    return this.songModel.findById(id).exec()
   }
 }
