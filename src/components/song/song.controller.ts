@@ -13,8 +13,7 @@ export class SongController {
 
   @Get('songs/:id')
   getSong(@Param() params): ISong {
-    const song =  this.songService.getSong(params.id)
-    console.log(song)
+    const song = this.songService.getSong(params.id)
     return song
   }
 }

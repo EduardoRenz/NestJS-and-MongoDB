@@ -1,23 +1,33 @@
 import { Test, TestingModule } from '@nestjs/testing'
 import { SongController } from './song.controller'
 import { SongService } from './song.service'
+import { ISong } from '../song/song.module'
+import * as songs from '../../../data/songs.json'
 
 describe(`SongController`, () => {
-  let songCcontroller: SongController
+  let songController: SongController
 
   beforeEach(async () => {
     const app: TestingModule = await Test.createTestingModule({
       controllers: [SongController],
       providers: [SongService],
     }).compile()
-    songCcontroller = app.get<SongController>(SongController)
+    songController = app.get<SongController>(SongController)
   })
 
   describe('/song', () => {
+    it('should return all of the songs and must match with the interface', () => {
+      const response = songController.getSongs()
+      expect(response).toEqual(songs)
+    })
+  })
+
+  describe('/song/1', () => {
     it('should return "A DreamShade Song"', () => {
-      expect(songCcontroller.getSong()).toStrictEqual({
-        name: 'Your Voice',
-        author: 'Dreamshade',
+      expect(songController.getSong({ id: 1 })).toStrictEqual({
+        id: 1,
+        title: 'Your Voice',
+        artist: 'Dreamshade',
       })
     })
   })
