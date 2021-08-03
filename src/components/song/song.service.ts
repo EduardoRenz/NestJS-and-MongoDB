@@ -1,12 +1,11 @@
 import { Model } from 'mongoose'
 import { InjectModel } from '@nestjs/mongoose'
 import { Injectable } from '@nestjs/common'
-import * as songs from '../../../data/songs.json'
-import { ISong, ISongQueryParams } from './song.interfaces'
+import { ISong, ISongQueryParams, ISongService } from './song.interfaces'
 import { Song, SongDocument } from './song.schema'
 
 @Injectable()
-export class SongService {
+export class SongService implements ISongService {
   constructor(@InjectModel(Song.name) private songModel: Model<SongDocument>) {}
 
   async create(song: ISong): Promise<ISong> {
@@ -29,7 +28,7 @@ export class SongService {
     return this.songModel.find(regexQuery).exec()
   }
 
-  getSong(id: number): Promise<SongDocument> {
+  getSong(id: string): Promise<SongDocument> {
     return this.songModel.findById(id).exec()
   }
 }
