@@ -3,7 +3,7 @@ import { Document } from 'mongoose'
 
 export type SongDocument = Song & Document
 
-@Schema()
+@Schema({ timestamps: true })
 export class Song {
   @Prop()
   title: string
