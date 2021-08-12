@@ -37,6 +37,14 @@ $ npm run test:cov
 $ docker composer up
 ```
 
+## Tasks
+
+[x] Test NestJS creating a new component (Song)
+
+[x] Use MongoDB as database
+
+[x] Generate a Mock test for MongoDB
+
 ## License
 
 Nest is [MIT licensed](LICENSE).
