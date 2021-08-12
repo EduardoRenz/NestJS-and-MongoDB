@@ -45,6 +45,8 @@ $ docker composer up
 
 [x] Generate a Mock test for MongoDB
 
+[ ] Test with RabbitMQ
+
 ## License
 
 Nest is [MIT licensed](LICENSE).
