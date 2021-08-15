@@ -1,6 +1,7 @@
 import { Connection, Channel, connect, Message } from 'amqplib'
+import { IMessagery } from './microservices-interfaces'
 //import { Transport } from '@nestjs/microservices'
-export class RabbitMQServer {
+export class RabbitMQServer implements IMessagery {
   private conn: Connection
   private channel: Channel
 
@@ -11,6 +12,7 @@ export class RabbitMQServer {
   async start(): Promise<void> {
     this.conn = await connect(this.uri)
     this.channel = await this.conn.createChannel()
+    console.info('Connected to RabbitMQ')
   }
 
   async publishInQueue(queue: string, message: string): Promise<void> {
