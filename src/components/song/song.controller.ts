@@ -1,7 +1,8 @@
 import { Controller, Get, Post, Body, Param, Query } from '@nestjs/common'
 import { SongService } from './song.service'
 import { ISong, ISongQueryParams } from './song.interfaces'
-import { Song, SongDocument } from './song.schema'
+import { SongDocument } from './song.schema'
+
 @Controller()
 export class SongController {
   constructor(private readonly songService: SongService) {}

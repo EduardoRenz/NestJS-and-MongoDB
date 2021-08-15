@@ -7,7 +7,6 @@ jest.mock('./song.service')
 
 describe(`SongController`, () => {
   let songController: SongController
-  let songService: SongService
 
   beforeEach(async () => {
     const app: TestingModule = await Test.createTestingModule({
@@ -19,7 +18,7 @@ describe(`SongController`, () => {
   })
 
   describe('Songs', () => {
-    it('should return all of the songs and must match with the interface', async () => {
+    it('should return all of the songs and must match with the mock data', async () => {
       const response = await songController.getSongs(null)
       expect(response).toEqual(songs)
     })
